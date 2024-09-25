@@ -46,13 +46,11 @@ La page générée affiche une réponse au format JSON contenant le message :
 Cette fois, nous essayons de lire un fichier HTML (`index.html`) à l’aide de `fs.readFile()`. Si le fichier est lu avec succès, il est renvoyé au client avec un type de contenu `text/html`. Cependant, une erreur se produit lors de l’appel de `fetch()`, générant un message d’erreur comme suit :
 
 ### Message d'erreur :
-```json
-{
+```
 Error fetching headers: TypeError: fetch failed
   at node:internal/deps/undici/undici:13178:13
   at async fetchHeaders (...reponse.js:9:26) {
   [cause]: Error: read ECONNRESET
-}
 }
 ```
 
@@ -120,5 +118,16 @@ async function requestListener(_request, response) {
 }
 
 ```
+
+---
+
+## Question 1.6
+
+Ces commandes ont ajouté deux packages dans le projet :
+
+- **cross-env** : pour démarrer le projet en mode production.
+- **nodemon** : pour faciliter le développement en redémarrant automatiquement le serveur après chaque modification.
+
+Cela a également rajouté le dossier `node_modules` dans le dossier `NGUYEN_ALEXANDRE_CC3`.
 
 ---
