@@ -221,5 +221,17 @@ async function requestListener(request, response) {
 
 ---
 
+## Questoin 2.1
 
+URL des documents de chaque modules :
+
+Express : https://expressjs.com/
+
+http-errors : https://www.npmjs.com/package/http-errors
+
+loglevel : https://www.npmjs.com/package/loglevel
+
+Morgan (HTTP request logger middleware) : https://www.npmjs.com/package/morgan
+
+---
 
