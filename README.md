@@ -140,3 +140,23 @@ La grande différence est donc le redémarrage automatique lors d'un changement 
 
 ---
 
+## Question 1.8
+
+Analyse des codes HTTP renvoyés par différentes routes :
+
+- **http://localhost:8000/index.html** : `200 (OK)`
+  - Le fichier `index.html` a été trouvé et renvoyé avec succès.
+
+- **http://localhost:8000/random.html** : `200 (OK)`
+  - Une page avec un nombre aléatoire a été renvoyée avec succès.
+
+- **http://localhost:8000/** : `404 (Not Found)`
+  - La route n’est pas définie dans le switch et renvoie une erreur 404.
+
+- **http://localhost:8000/dont-exist** : `404 (Not Found)`
+  - La route est inconnue, d'où une erreur 404.
+
+
+
+---
+
