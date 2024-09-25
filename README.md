@@ -131,3 +131,12 @@ Ces commandes ont ajouté deux packages dans le projet :
 Cela a également rajouté le dossier `node_modules` dans le dossier `NGUYEN_ALEXANDRE_CC3`.
 
 ---
+
+## Question 1.7
+
+La principale différence entre les modes production et développement est que le mode production est le mode par défaut avec Node.js, tandis que le mode développement, avec nodemon, permet de détecter automatiquement les changements de fichiers et de redémarrer le serveur sans intervention manuelle. Cela rend le processus de développement beaucoup plus fluide et rapide.
+
+La grande différence est donc le redémarrage automatique lors d'un changement détecté, permettant un développement beaucoup plus fluide.
+
+---
+
