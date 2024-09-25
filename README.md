@@ -160,3 +160,79 @@ Analyse des codes HTTP renvoyés par différentes routes :
 
 ---
 
+### Fonction pour générer un nombre aléatoire en fonction d'un paramètre :
+```javascript
+async function requestListener(request, response) {
+  response.setHeader("Content-Type", "text/html");
+  
+  try {
+    const pathParts = request.url.split("/");
+
+    switch (pathParts[1]) {
+      case "":
+      case "index.html":
+        response.writeHead(200);
+        return response.end(await fs.readFile("index.html", "utf8"));
+
+      case "random.html":
+        response.writeHead(200);
+        return response.end(`<html><p>${Math.floor(100 * Math.random())}</p></html>`);
+
+      case "random":
+        const nb = parseInt(pathParts[2]);
+        if (!isNaN(nb) && nb > 0) {
+          let randomNumbers = "";
+          for (let i = 0; i < nb; i++) {
+            randomNumbers += `<p>${Math.floor(100 * Math.random())}</p>`;
+          }
+          response.writeHead(200);
+          return response.end(`<html>${randomNumbers}</html>`);
+        } else {
+          response.writeHead(400);
+          return response.end(`<html><p>400: BAD REQUEST</p></html>`);
+        }
+
+      default:
+        response.writeHead(404);
+        return response.end(`<html><p>404: NOT FOUND</p></html>`);
+    }
+  } catch (error) {
+    console.error(error);
+    response.writeHead(500);
+    return response.end(`<html><p>500: INTERNAL SERVER ERROR</p></html>`);
+  }
+}
+```
+
+---
+
+## Question 2.1
+
+URL des documents de chaque modules :
+
+Express : **https://expressjs.com/**
+
+http-errors : **https://www.npmjs.com/package/http-errors**
+
+loglevel : **https://www.npmjs.com/package/loglevel**
+
+Morgan (HTTP request logger middleware) : **https://www.npmjs.com/package/morgan**
+
+---
+
+## Question 2.2
+
+Verification des liens :
+
+**http://localhost:8000/random/8**: 
+![image pour random](images_verification/random.png)
+
+**http://localhost:8000/index.html**:
+![image pour index](images_verification/index.png)
+
+**http://localhost:8000/**:
+![image du serveur sans random ni index](images_verification/image.png)
+
+On a bien les trois liens qui fonctionnement en utilisant la commande npm run express-dev pour le mode developpement
+
+---
