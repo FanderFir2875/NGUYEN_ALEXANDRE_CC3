@@ -65,3 +65,60 @@ Cette erreur est probablement liée à un problème de connexion, le serveur aya
 L’erreur `ENOENT (No such file or directory)` indique que le fichier `index.html` est introuvable dans le répertoire. La fonction essaie de lire un fichier qui n'existe pas.
 
 ---
+
+## Question 1.5
+
+Comparaison entre deux versions de la fonction `requestListener` pour gérer la lecture asynchrone du fichier `index.html` :
+
+### Sans `async` :
+Cette version utilise une promesse via `.then()` et `.catch()` pour lire le fichier et envoyer une réponse. Si une erreur survient, un message "Internal Server Error" est renvoyé avec un code 500.
+
+```javascript
+function requestListener(_request, response) {
+  fs.readFile("index.html", "utf8")
+    .then((contents) => {
+      response.setHeader("Content-Type", "text/html");
+      response.writeHead(200);
+      response.end(contents);
+    })
+    .catch((error) => {
+      console.error(error);
+      response.writeHead(500, { "Content-Type": "text/plain" });
+      response.end("Internal Server Error");
+    });
+}
+```
+
+### Avec `async` :
+Ici, la fonction utilise `await` pour attendre la lecture du fichier, simplifiant la gestion des promesses. En cas d'erreur, la gestion est similaire avec un statut 500 et un message "Internal Server Error".
+
+```javascript
+// Fonction asynchrone qui gère les requêtes et envoie des réponses
+async function requestListener(_request, response) {
+  try {
+      // Lecture du fichier "index.html" de manière asynchrone avec l'encodage "utf8"
+      const contents = await fs.readFile("index.html", "utf8");
+      
+      // Définir l'en-tête de la réponse pour indiquer que le contenu est du HTML
+      response.setHeader("Content-Type", "text/html");
+      
+      // Envoyer un statut HTTP 200 pour indiquer que la requête a été traitée avec succès
+      response.writeHead(200);
+      
+      // Envoyer le contenu du fichier "index.html" dans la réponse et terminer la réponse
+      response.end(contents);
+  } catch (error) {
+      // Si une erreur survient lors de la lecture du fichier, l'erreur est affichée dans la console
+      console.error(error);
+      
+      // Envoyer un statut HTTP 500 pour indiquer une erreur interne du serveur
+      response.writeHead(500, { "Content-Type": "text/plain" });
+      
+      // Terminer la réponse avec un message d'erreur simple
+      response.end("Internal Server Error");
+  }
+}
+
+```
+
+---
