@@ -364,6 +364,18 @@ On a la pile d'appels ( le stack ) present dans la page d'erreur , utile pour le
 En mode Production : `npm run express-prod`
 ![image pour random](images_verification/production.png)
 
-En production la pile d'appels n'est pas afficher uniquement le code d'erreur est affiche ainsi que le message d'erreur.
+En production , la pile d'appels n'est pas afficher uniquement le code d'erreur est affiche ainsi que le message d'erreur.
+
+---
+
+## Configuration de LOGGER
+
+On mets ducoup le niveau du log a warn avec : `logger.setLevel(logger.levels.WARN);` , et on voit ce que on a dans le terminal , si nb est bien un int , pas d'erreur est afficher ,  mais si on a une erreur , ce message devrait apparetre `logger.warn("A warning occurred: Invalid parameter, expected a positive number.");`, pour dire que l'on a une erreur.
+
+WARN sans erreur :
+![image pour random](images_verification/sans_erreur.png)
+
+WARN avec une erreur:
+![image pour random](images_verification/erreur_WARN.png)
 
 ---
