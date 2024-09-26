@@ -351,3 +351,19 @@ import createError from "http-errors"; ``` , puis on rajoute un if pour verifier
 ```
 On a bien alors une erreur 400 montrant que nb est different d'un int :
 ![image pour random](images_verification/error_manage.png)
+
+## Question 2.7
+
+On insere les deux handlers pour gerer les erreurs et on a bien deux type d'affichage de l'erreur :
+
+En mode Developpement : `npm run express-dev`
+![image pour random](images_verification/developpement.png)
+
+On a la pile d'appels ( le stack ) present dans la page d'erreur , utile pour les developpeur.
+
+En mode Production : `npm run express-prod`
+![image pour random](images_verification/production.png)
+
+En production la pile d'appels n'est pas afficher uniquement le code d'erreur est affiche ainsi que le message d'erreur.
+
+---

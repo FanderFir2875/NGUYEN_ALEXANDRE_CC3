@@ -31,7 +31,20 @@ app.get("/random/:nb", async function (request, response, next) {
 
   return response.render("random", { numbers , welcome});
 });
+// Gestionnaire pour les erreurs 404 (page non trouvée)
+app.use((request, response, next) => {
+  console.debug(`default route handler: ${request.url}`);
+  return next(createError(404));
+});
 
+// Gestionnaire global d'erreurs
+app.use((error, _request, response, _next) => {
+  console.debug(`default error handler: ${error}`);
+  const status = error.status ?? 500;  // Code d'état, par défaut 500
+  const stack = app.get("env") === "development" ? error.stack : "";  // Afficher le stack seulement en mode développement
+  const result = { code: status, message: error.message, stack };
+  return response.render("error", result);  // Rendre la vue 'error.ejs'
+});
 const server = app.listen(port, host);
 
 server.on("listening", () =>
