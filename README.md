@@ -258,11 +258,11 @@ dans le cas de 'http://localhost:8000' et 'http://localhost:8000/index.html' :
 ```
 si on compare avec ceux dans http , on a ducoup quelque entete de rajouter comme :
 * x-powered-by :
-    -qui est propre a Express et indique que la réponse est générée par Express.
+     qui est propre a Express et indique que la réponse est générée par Express.
 * etag et last-modified : 
-    -qui meme si ils sont egalement dans les reponses http , leur gestion est souvent simplifiee et automatique dans Express.
+     qui meme si ils sont egalement dans les reponses http , leur gestion est souvent simplifiee et automatique dans Express.
 * cache-control:
-    -gestion de la mise en cache qui peut être plus explicite dans Express par rapport à des configurations HTTP plus basiques.
+     gestion de la mise en cache qui peut être plus explicite dans Express par rapport à des configurations HTTP plus basiques.
 
 
 dans le cas de 'http://localhost:8000/random/8 (avec 8 un nombre):
@@ -278,8 +278,12 @@ dans le cas de 'http://localhost:8000/random/8 (avec 8 un nombre):
   "keep-alive": "timeout=5",
   "x-powered-by": "Express"
 }
----
+```
 
 on a une differente valeur de content-length avec bien  le x-powered-by present.
 
 ---
+
+## Question 2.4
+
+Listening est déclenché dans un serveur node ( dans ce cas en Express) lorsque le serveur commence a écouter sur le port specifié dans ce cas la le port 8000. listening est déclenché lorsque le serveur est prêt à accepter des connexions apres s'être lié avec succès a l'adresse et au port spécifiés. Cela permet aux développeurs de savoir quand le serveur est opérationnel et prêt à traiter des requêtes.

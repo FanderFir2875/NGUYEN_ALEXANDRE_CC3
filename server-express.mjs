@@ -18,4 +18,12 @@ app.get("/random/:nb", async function (request, response, next) {
   return response.send(`<html><ul>${contents}</ul></html>`);
 });
 
-app.listen(port, host);
+const server = app.listen(port, host);
+
+server.on("listening", () =>
+  console.info(
+    `HTTP listening on http://${server.address().address}:${server.address().port} with mode '${process.env.NODE_ENV}'`,
+  ),
+);
+
+console.info(`File ${import.meta.url} executed.`);
