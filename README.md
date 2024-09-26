@@ -293,3 +293,23 @@ Listening est déclenché dans un serveur node ( dans ce cas en Express) lorsque
 ## Question 2.5
 
 l'option qui redirige / vers /index.html est express.static qui sert de maniere automatique le fichier index.html lorsque on accede à la racine d'un dossier contenant ce fichier.Lorsque on utilises ```json app.use(express.static("static")); ```, Express cherche un fichier nommé   index.html dans le dossier spécifié dans ce cas la le dossier static. Si ce fichier existe et que l'utilisateur accède à la racine (/), Express renverra automatiquement le fichier index.html.
+
+
+## Question 2.6
+
+On a plusieurs codes possibles quand on regarde le fichier style.css :
+
+* lorsque on visite le site pour la premiere fois (f5 premier visite):
+      - code HTTP : 200 (OK)
+      - expliquation: Lors de la première visite, le fichier style.css est téléchargé depuis le serveur car il n'est pas encore en cache. Le serveur renvoie donc un code 200 OK pour indiquer que le fichier a été servi avec succès.
+
+* lorsqu'on fait un rafraichissement normale (Ctrl + R):
+      - code HTTP : 304 Not Modified (si le fichier est en cache) ou 200 OK (si le cache a expiré)
+
+      - expliquation: Si le fichier ````style.css``` est déjà en cache et n'a pas changé depuis la dernière visite, le navigateur envoie une requête conditionnelle avec l'en-tête If-Modified-Since. Si le serveur confirme que le fichier n'a pas été modifié, il renvoie 304 Not Modified ( dans le cas apres avoir refresh normal et ensuite on a un Hard refresh avec Ctrl + Shif + R, on aura un code 304 (Not Modified)), indiquant au navigateur d'utiliser la version en cache. Si le fichier a changé ou n'est pas en cache, il renvoie 200 OK avec le fichier.
+
+* Lorsqu'on fait un rafraichissement forcé (Ctrl + Shift + R):
+      - code HTTP : 200 (OK)
+      - explication : Un rafraîchissement forcé ignore complètement le cache, ce qui oblige le navigateur à recharger toutes les ressources à partir du serveur, y compris style.css. Le serveur renvoie alors 200 OK pour indiquer que le fichier a été servi à nouveau.
+
+En conclusion , Lorsqu'on fait un refresh simple apres avoir un fait un refresh hard on passe d'un code 200 a un code 304 , pour savoir si le css n'a pas encore été modifier.
