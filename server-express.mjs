@@ -6,12 +6,15 @@ const port = 8000;
 
 const app = express();
 
-app.get(["/", "/index.html"], async function (request, response, next) {
-  response.sendFile("index.html", { root: "./" });
-});
+// Middleware pour servir des fichiers statiques à partir du dossier "static"
+app.use(express.static("static"));
 
+// La route pour générer des nombres aléatoires
 app.get("/random/:nb", async function (request, response, next) {
   const length = request.params.nb;
+  if (length <= 0) {
+    return response.status(400).send("Invalid number of elements.");
+  }
   const contents = Array.from({ length })
     .map((_) => `<li>${Math.floor(100 * Math.random())}</li>`)
     .join("\n");

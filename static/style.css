@@ -1,0 +1,14 @@
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #3498db; /* Couleur bleue */
+}
+
+p {
+    font-size: 18px; /* Taille de police pour le paragraphe */
+}

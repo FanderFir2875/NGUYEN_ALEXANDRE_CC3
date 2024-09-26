@@ -287,3 +287,9 @@ on a une differente valeur de content-length avec bien  le x-powered-by present.
 ## Question 2.4
 
 Listening est déclenché dans un serveur node ( dans ce cas en Express) lorsque le serveur commence a écouter sur le port specifié dans ce cas la le port 8000. listening est déclenché lorsque le serveur est prêt à accepter des connexions apres s'être lié avec succès a l'adresse et au port spécifiés. Cela permet aux développeurs de savoir quand le serveur est opérationnel et prêt à traiter des requêtes.
+
+---
+
+## Question 2.5
+
+l'option qui redirige / vers /index.html est express.static qui sert de maniere automatique le fichier index.html lorsque on accede à la racine d'un dossier contenant ce fichier.Lorsque on utilises ```json app.use(express.static("static")); ```, Express cherche un fichier nommé   index.html dans le dossier spécifié dans ce cas la le dossier static. Si ce fichier existe et que l'utilisateur accède à la racine (/), Express renverra automatiquement le fichier index.html.
