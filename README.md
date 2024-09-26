@@ -318,3 +318,23 @@ On a plusieurs codes possibles quand on regarde le fichier `style.css` :
 ---
 
 **En conclusion** : Lorsqu'on fait un rafraîchissement normal après un rafraîchissement forcé, on passe d'un code 200 à un code 304 si le fichier `style.css` n'a pas été modifié.
+
+---
+
+## Rendu avec EJS
+
+On rajoute cette partie dans server-express.mjs :
+```javascript
+  const numbers = Array.from({ length })
+   .map(() => Math.floor(100 * Math.random()));
+  
+  const welcome = `Voila ${length} nombre(s) aleatoire(s) genere(s) :`;
+
+  return response.render("random", { numbers , welcome});
+```
+Ce qui nous permettra d'afficher a la fois un message welcome et une suite de nombre en fonction du nombre données en url
+
+Voici le resultat:
+![image pour random](images_verification/tutorial.png)
+
+---
