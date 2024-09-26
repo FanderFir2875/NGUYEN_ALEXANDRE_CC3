@@ -375,7 +375,10 @@ On mets le niveau du log a warn avec : `logger.setLevel(logger.levels.WARN);` , 
 * **WARN sans erreur**:
       - **![image pour random](images_verification/sans_erreur2.png)**
 
-* **WARN avec une erreur**:
-      - **![image pour random](images_verification/erreur_WARN.png)**
+- pas d'erreur rencontrer , rien est afficher.
 
+* **WARN avec une erreur**:
+      - **![image pour random](images_verification/erreur_WARN.png)**\
+    
+- on a la une erreur donc le log warn est afficher en jaune pour montrer l'importance de l'erreur.
 ---
