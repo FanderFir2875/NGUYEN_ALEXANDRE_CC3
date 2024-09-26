@@ -297,19 +297,24 @@ l'option qui redirige / vers /index.html est express.static qui sert de maniere 
 
 ## Question 2.6
 
-On a plusieurs codes possibles quand on regarde le fichier style.css :
+On a plusieurs codes possibles quand on regarde le fichier `style.css` :
 
-* lorsque on visite le site pour la premiere fois (f5 premier visite):
-      - code HTTP : 200 (OK)
-      - expliquation: Lors de la première visite, le fichier style.css est téléchargé depuis le serveur car il n'est pas encore en cache. Le serveur renvoie donc un code 200 OK pour indiquer que le fichier a été servi avec succès.
+* **Lorsque l'on visite le site pour la première fois (F5 première visite)** :
+    - **Code HTTP** : 200 (OK)
+    - **Explication** : Lors de la première visite, le fichier `style.css` est téléchargé depuis le serveur car il n'est pas encore en cache. Le serveur renvoie donc un code 200 OK pour indiquer que le fichier a été servi avec succès.
 
-* lorsqu'on fait un rafraichissement normale (Ctrl + R):
-      - code HTTP : 304 Not Modified (si le fichier est en cache) ou 200 OK (si le cache a expiré)
+* **Lorsqu'on fait un rafraîchissement normal (Ctrl + R)** :
+    - **Code HTTP** : 304 Not Modified (si le fichier est en cache) ou 200 OK (si le cache a expiré)
+    - **Explication** :
+      - Si le fichier `style.css` est déjà en cache et n'a pas changé depuis la dernière visite, le navigateur envoie une requête conditionnelle avec l'en-tête `If-Modified-Since`. 
+      - Si le serveur confirme que le fichier n'a pas été modifié, il renvoie 304 Not Modified, indiquant au navigateur d'utiliser la version en cache.
+      - Si le fichier a changé ou n'est pas en cache, il renvoie un 200 OK avec le fichier.
+      - Après un **hard refresh** (Ctrl + Shift + R), un simple rafraîchissement (Ctrl + R) renverra un code 304 si le fichier n'a pas changé.
 
-      - expliquation: Si le fichier ````style.css``` est déjà en cache et n'a pas changé depuis la dernière visite, le navigateur envoie une requête conditionnelle avec l'en-tête If-Modified-Since. Si le serveur confirme que le fichier n'a pas été modifié, il renvoie 304 Not Modified ( dans le cas apres avoir refresh normal et ensuite on a un Hard refresh avec Ctrl + Shif + R, on aura un code 304 (Not Modified)), indiquant au navigateur d'utiliser la version en cache. Si le fichier a changé ou n'est pas en cache, il renvoie 200 OK avec le fichier.
+* **Lorsqu'on fait un rafraîchissement forcé (Ctrl + Shift + R)** :
+    - **Code HTTP** : 200 (OK)
+    - **Explication** : Un rafraîchissement forcé ignore complètement le cache, ce qui oblige le navigateur à recharger toutes les ressources à partir du serveur, y compris `style.css`. Le serveur renvoie alors 200 OK pour indiquer que le fichier a été servi à nouveau.
 
-* Lorsqu'on fait un rafraichissement forcé (Ctrl + Shift + R):
-      - code HTTP : 200 (OK)
-      - explication : Un rafraîchissement forcé ignore complètement le cache, ce qui oblige le navigateur à recharger toutes les ressources à partir du serveur, y compris style.css. Le serveur renvoie alors 200 OK pour indiquer que le fichier a été servi à nouveau.
+---
 
-En conclusion , Lorsqu'on fait un refresh simple apres avoir un fait un refresh hard on passe d'un code 200 a un code 304 , pour savoir si le css n'a pas encore été modifier.
+**En conclusion** : Lorsqu'on fait un rafraîchissement normal après un rafraîchissement forcé, on passe d'un code 200 à un code 304 si le fichier `style.css` n'a pas été modifié.
