@@ -1,9 +1,7 @@
 
-// URL de votre serveur
-const url = 'http://localhost:8000';
 
 // Fonction pour récupérer et afficher les en-têtes
-async function fetchHeaders() {
+async function fetchHeaders(url) {
     try {
         // Effectuer la requête
         const response = await fetch(url);
@@ -22,5 +20,5 @@ async function fetchHeaders() {
 }
 
 // Appeler la fonction
-fetchHeaders();
+fetchHeaders('http://localhost:8000/');
 

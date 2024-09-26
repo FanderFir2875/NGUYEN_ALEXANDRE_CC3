@@ -236,3 +236,50 @@ Verification des liens :
 On a bien les trois liens qui fonctionnement en utilisant la commande npm run express-dev pour le mode developpement
 
 ---
+
+## Question 2.3
+
+dans le cas de 'http://localhost:8000' et 'http://localhost:8000/index.html' :
+
+### En-têtes renvoyés :
+```json
+{
+  "accept-ranges": "bytes",
+  "cache-control": "public, max-age=0",
+  "connection": "keep-alive",
+  "content-length": "621",
+  "content-type": "text/html; charset=UTF-8",
+  "date": "Wed, 25 Sep 2024 23:31:21 GMT",
+  "etag": "W/\"26d-1922b6cadfc\"",
+  "keep-alive": "timeout=5",
+  "last-modified": "Wed, 25 Sep 2024 23:03:15 GMT",
+  "x-powered-by": "Express"
+}
+```
+si on compare avec ceux dans http , on a ducoup quelque entete de rajouter comme :
+* x-powered-by :
+    -qui est propre a Express et indique que la réponse est générée par Express.
+* etag et last-modified : 
+    -qui meme si ils sont egalement dans les reponses http , leur gestion est souvent simplifiee et automatique dans Express.
+* cache-control:
+    -gestion de la mise en cache qui peut être plus explicite dans Express par rapport à des configurations HTTP plus basiques.
+
+
+dans le cas de 'http://localhost:8000/random/8 (avec 8 un nombre):
+
+### En-têtes renvoyés :
+```json
+{
+  "connection": "keep-alive",
+  "content-length": "114",
+  "content-type": "text/html; charset=utf-8",
+  "date": "Thu, 26 Sep 2024 00:21:02 GMT",
+  "etag": "W/\"72-A0G2VYysQYvLcQKqN7JUeDoBkmE\"",
+  "keep-alive": "timeout=5",
+  "x-powered-by": "Express"
+}
+---
+
+on a une differente valeur de content-length avec bien  le x-powered-by present.
+
+---
