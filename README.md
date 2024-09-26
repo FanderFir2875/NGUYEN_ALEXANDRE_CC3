@@ -338,3 +338,16 @@ Voici le resultat:
 ![image pour random](images_verification/tutorial.png)
 
 ---
+
+## Gestion d'erreurs Part 1
+
+Apres avoir installer http-errors , on import celui ci avec ```javascript
+import createError from "http-errors"; ``` , puis on rajoute un if pour verifier si nb est bien un int :
+```javascript
+  const length = Number.parseInt(request.params.nb , 10);
+  if (Number.isNaN(length)|| length <= 0 ) {
+    return next(createError(400,'Invalid parameter: nb must be a positive number.'));
+  }
+```
+On a bien alors une erreur 400 montrant que nb est different d'un int :
+![image pour random](images_verification/error_manage.png)

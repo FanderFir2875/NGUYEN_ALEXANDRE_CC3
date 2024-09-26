@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import createError from "http-errors"; 
 
 const host = "localhost";
 const port = 8000;
@@ -19,9 +20,9 @@ app.use(express.static("static"));
 
 // La route pour générer des nombres aléatoires
 app.get("/random/:nb", async function (request, response, next) {
-  const length = request.params.nb;
-  if (isNaN(length)||length <= 0 ) {
-    return response.status(400).send("Invalid number of elements.");
+  const length = Number.parseInt(request.params.nb , 10);
+  if (Number.isNaN(length)|| length <= 0 ) {
+    return next(createError(400,'Invalid parameter: nb must be a positive number.'));
   }
   const numbers = Array.from({ length })
    .map(() => Math.floor(100 * Math.random()));
